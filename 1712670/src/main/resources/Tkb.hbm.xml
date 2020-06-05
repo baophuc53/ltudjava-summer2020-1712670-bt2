@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class catalog="school" name="pojo.Tkb" table="tkb">
+        <id name="stt" type="int">
+            <column name="STT"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="pojo.Sinhvien" fetch="select" insert="true" name="sinhvien" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="MaLop"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="maMon" optimistic-lock="true" type="string" unique="false">
+            <column name="MaMon"/>
+        </property>
+        <property generated="never" lazy="false" name="tenMon" optimistic-lock="true" type="string" unique="false">
+            <column name="TenMon"/>
+        </property>
+        <property generated="never" lazy="false" name="phongHoc" optimistic-lock="true" type="string" unique="false">
+            <column name="PhongHoc"/>
+        </property>
+    </class>
+</hibernate-mapping>

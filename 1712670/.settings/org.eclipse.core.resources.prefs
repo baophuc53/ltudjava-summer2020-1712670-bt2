@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/pojo/Main.java=UTF-8
 encoding//src/main/java/view/AddSinhvien.java=UTF-8
+encoding//src/main/java/view/AddSvMonhoc.java=UTF-8
+encoding//src/main/java/view/DelSvMonhoc.java=UTF-8

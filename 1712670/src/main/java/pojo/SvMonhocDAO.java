@@ -76,6 +76,26 @@ public class SvMonhocDAO {
 		}
 		return true;
 	}
+	
+	public static boolean xoaSvMonhoc(SvMonhoc svmh) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		if (SvMonhocDAO.layThongTinhSvMonhoc(svmh.getMssv(), svmh.getMaMon()) == null) {
+			return false;
+		}
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.delete(svmh);
+			transaction.commit();
+		} catch (HibernateException ex) {
+			// Log the exception
+			transaction.rollback();
+			System.err.println(ex);
+		} finally {
+			session.close();
+		}
+		return true;
+	}
 
 	public static boolean themDanhSachSvMonhoc(List<SvMonhoc> dsSvmh) {
 		Session session = HibernateUtil.getSessionFactory().openSession();

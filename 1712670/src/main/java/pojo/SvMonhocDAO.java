@@ -1,6 +1,8 @@
 package pojo;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -136,5 +138,25 @@ public class SvMonhocDAO {
 			session.close();
 		}
 		return true;
+	}
+	
+	public static String[] layDanhSachMon() {
+		List<String> ds = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			String hql = "select maMon from SvMonhoc sv";
+			ds = session.createQuery(hql).getResultList();
+		} catch (HibernateException ex) {
+//Log the exception
+			System.err.println(ex);
+		} finally {
+			session.close();
+		}
+		Set<String> set = new HashSet<>();
+		for (String i : ds)
+			set.add(i);
+		String[] mon = set.toArray(new String[set.size()]);
+
+		return mon;
 	}
 }

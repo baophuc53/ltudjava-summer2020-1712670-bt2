@@ -9,15 +9,12 @@
         <property name="mssv" type="int">
             <column name="MSSV"/>
         </property>
+        <property name="maLop" type="java.lang.String">
+            <column name="MaLop"/>
+        </property>
         <property name="maMon" type="java.lang.String">
             <column name="MaMon"/>
         </property>
-        <!-- <many-to-one class="pojo.Sinhvien" fetch="select" name="sinhvien" insert="false" update="false">
-            <column name="MSSV" not-null="true"/>
-        </many-to-one>
-        <many-to-one class="pojo.Tkb" fetch="select" name="tkb" insert="false" update="false">
-            <column name="MaMon" not-null="true"/>
-        </many-to-one> -->
         <property name="gk" type="java.lang.Float">
             <column name="GK"/>
         </property>

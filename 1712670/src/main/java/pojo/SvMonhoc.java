@@ -11,11 +11,8 @@ public class SvMonhoc implements java.io.Serializable {
 
 	private int stt;
 	private int mssv;
+	private String maLop;
 	private String maMon;
-	/*
-	 * private Sinhvien sinhvien;
-	 */
-	/* private Tkb tkb; */
 	private Float gk;
 	private Float ck;
 	private Float diemKhac;
@@ -28,15 +25,11 @@ public class SvMonhoc implements java.io.Serializable {
 		this.stt = stt;
 	}
 
-	public SvMonhoc(int stt, int mssv, String maMon, Float gk, Float ck, Float diemKhac, Float diemTong) {
+	public SvMonhoc(int stt, int mssv, String maLop, String maMon, Float gk, Float ck, Float diemKhac, Float diemTong) {
 		this.stt = stt;
 		this.mssv = mssv;
+		this.setMaLop(maLop);
 		this.maMon = maMon;
-		/*
-		 * this.sinhvien = sinhvien;
-		 * 
-		 * this.tkb = tkb;
-		 */
 		this.gk = gk;
 		this.ck = ck;
 		this.diemKhac = diemKhac;
@@ -58,6 +51,15 @@ public class SvMonhoc implements java.io.Serializable {
 	public void setMssv(int mssv) {
 		this.mssv = mssv;
 	}
+	
+	public String getMaLop() {
+		return maLop;
+	}
+
+	public void setMaLop(String maLop) {
+		this.maLop = maLop;
+	}
+
 
 	public String getMaMon() {
 		return maMon;
@@ -66,18 +68,6 @@ public class SvMonhoc implements java.io.Serializable {
 	public void setMaMon(String maMon) {
 		this.maMon = maMon;
 	}
-
-	/*
-	 * public Sinhvien getSinhvien() { return this.sinhvien; }
-	 * 
-	 * public void setSinhvien(Sinhvien sinhvien) { this.sinhvien = sinhvien; }
-	 */
-
-	/*
-	 * public Tkb getTkb() { return this.tkb; }
-	 * 
-	 * public void setTkb(Tkb tkb) { this.tkb = tkb; }
-	 */
 
 	public Float getGk() {
 		return this.gk;
@@ -111,4 +101,5 @@ public class SvMonhoc implements java.io.Serializable {
 		this.diemTong = diemTong;
 	}
 
+	
 }

@@ -1,31 +1,37 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.io.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import pojo.Sinhvien;
 import pojo.SinhvienDAO;
+import pojo.SvMonhoc;
+import pojo.SvMonhocDAO;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
+public class ImportBangdiem extends JFrame {
 
-public class ImportSinhvien extends JFrame {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String pathfile;
 	/**
@@ -35,7 +41,7 @@ public class ImportSinhvien extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ImportSinhvien frame = new ImportSinhvien();
+					ImportBangdiem frame = new ImportBangdiem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +53,7 @@ public class ImportSinhvien extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ImportSinhvien() {
+	public ImportBangdiem() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -74,29 +80,36 @@ public class ImportSinhvien extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					BufferedReader br =new BufferedReader(new FileReader(pathfile));
+					BufferedReader br = new BufferedReader(new FileReader(pathfile));
 					String line;
 					line = br.readLine();
 					String[] value = line.split(",");
 					String maLop = value[0];
+					String maMon = value[1];
 					br.readLine();
-					List<Sinhvien> list = new ArrayList<>();
 					while ((line = br.readLine())!=null) {
 						String UTF8Str = new String(line.getBytes(),"UTF-8");
 						String[] v = UTF8Str.split(",");
-						int stt = Integer.valueOf(v[0]);
 						int mssv = Integer.valueOf(v[1]);
-						String ten = v[2];
-						int gioi = (v[3].equals("Nam")) ? 1 : 0;
-						int cmnd = Integer.valueOf(v[4]);
-						list.add(new Sinhvien(mssv, stt, ten, gioi, cmnd, maLop));
+						float gk = Float.valueOf(v[3]);
+						float ck = Float.valueOf(v[4]);
+						float khac = Float.valueOf(v[5]);
+						float tong = Float.valueOf(v[6]);
+						SvMonhoc sv = SvMonhocDAO.layThongTinhSvMonhoc(mssv, maMon);
+						sv.setGk(gk);
+						sv.setCk(ck);
+						sv.setDiemKhac(khac);
+						sv.setDiemTong(tong);
+						boolean check = SvMonhocDAO.capNhatSvMonhoc(sv);
+						if (check == false) {
+							JOptionPane.showMessageDialog(contentPane, "Fail!");
+							break;
+						}
 					}
-					boolean check = SinhvienDAO.themDanhSachSinhVien(list);
+					
 					br.close();
-					if (check) 
-						JOptionPane.showMessageDialog(contentPane, "Successful!");
-					else
-						JOptionPane.showMessageDialog(contentPane, "Fail!");
+					JOptionPane.showMessageDialog(contentPane, "Successful!");
+						
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -122,6 +135,7 @@ public class ImportSinhvien extends JFrame {
 		contentPane.setLayout(sl_contentPane);
 		contentPane.add(btnNewButton);
 		contentPane.add(btnNewButton_1);
-		contentPane.add(lblNewLabel);		
+		contentPane.add(lblNewLabel);
 	}
+
 }

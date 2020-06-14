@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -18,7 +16,6 @@ import pojo.SvMonhocDAO;
 import pojo.Tkb;
 import pojo.TkbDAO;
 
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout.Alignment;
@@ -127,27 +124,21 @@ public class ImportTkb extends JFrame {
 				}
 			}
 		});
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(147)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(56)
-					.addComponent(btnNewButton)
-					.addGap(11)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-					.addGap(22)
-					.addComponent(btnNewButton_1))
-		);
-		contentPane.setLayout(gl_contentPane);
+		SpringLayout sl_contentPane = new SpringLayout();
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel, 90, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNewLabel, -90, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton_1, 140, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton_1, -140, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton, 150, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, -150, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNewLabel, 90, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNewLabel, 104, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton_1, 131, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton, 61, SpringLayout.NORTH, contentPane);
+		contentPane.setLayout(sl_contentPane);
+		contentPane.add(btnNewButton);
+		contentPane.add(btnNewButton_1);
+		contentPane.add(lblNewLabel);
 		
 		
 	}

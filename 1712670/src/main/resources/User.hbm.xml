@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 18, 2020 2:31:42 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+ <class catalog="school" name="pojo.User" table="user">
+  <id name="username" type="java.lang.String">
+   <column name="username"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="password" type="java.lang.String">
+   <column name="password"/>
+  </property>
+  <property generated="never" lazy="false" name="type" type="int">
+   <column name="type"/>
+  </property>
+ </class>
+</hibernate-mapping>

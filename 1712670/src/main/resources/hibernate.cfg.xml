@@ -13,5 +13,6 @@
         <mapping resource="SinhVien.hbm.xml"/>
         <mapping resource="SvMonhoc.hbm.xml"/>
   		<mapping resource="Tkb.hbm.xml"/>
+  		<mapping resource="User.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

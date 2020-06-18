@@ -40,6 +40,21 @@ public class SvMonhocDAO {
 		}
 		return ds;
 	}
+	
+	public static List<SvMonhoc> layDanhSachSinhVienMonHocTheoSv(int mssv) {
+		List<SvMonhoc> ds = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			String hql = "select sv from SvMonhoc sv where mssv=" + mssv ;
+			ds = session.createQuery(hql).getResultList();
+		} catch (HibernateException ex) {
+//Log the exception
+			System.err.println(ex);
+		} finally {
+			session.close();
+		}
+		return ds;
+	}
 
 	public static SvMonhoc layThongTinhSvMonhoc(int mssv, String maMon) {
 		List<SvMonhoc> ds = null;

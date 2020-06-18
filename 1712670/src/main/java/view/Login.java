@@ -17,6 +17,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import pojo.User;
+import pojo.UserDAO;
+
 import javax.swing.JFormattedTextField;
 import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
@@ -72,12 +76,22 @@ public class Login {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String user = textField.getText();
-				String pass = new String(passwordField.getPassword());
-				if (user.equals("1") && pass.equals("1")) {
-					ImportSinhvien main = new ImportSinhvien();
-					main.setVisible(true);
-					frame.dispose();
+				String username = textField.getText();
+				String password = new String(passwordField.getPassword());
+				User user = UserDAO.layThongTinUser(username);
+				if (user != null) {
+					if (password.equals(user.getPassword())) {
+						if (user.getType() == 0) {
+							MainGiaovu main = new MainGiaovu();
+							main.setVisible(true);
+							frame.dispose();
+						}
+						else {
+							MainSinhvien main = new MainSinhvien(Integer.valueOf(user.getUsername()));
+							main.setVisible(true);
+							frame.dispose();
+						}
+					}	
 				}
 				else {
 					JOptionPane.showMessageDialog(frame, "Invalid user or password!");

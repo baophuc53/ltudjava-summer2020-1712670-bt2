@@ -2,6 +2,7 @@ package pojo;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class UserDAO {
 	public static User layThongTinUser(String username) {
@@ -16,5 +17,25 @@ public class UserDAO {
 			session.close();
 		}
 		return user;
+	}
+	
+	public static boolean updateThongTinUser(User user) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		if (UserDAO.layThongTinUser(user.getUsername()) == null) {
+			return false;
+		}
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.update(user);
+			transaction.commit();
+		} catch (HibernateException ex) {
+			// Log the exception
+			transaction.rollback();
+			System.err.println(ex);
+		} finally {
+			session.close();
+		}
+		return true;
 	}
 }

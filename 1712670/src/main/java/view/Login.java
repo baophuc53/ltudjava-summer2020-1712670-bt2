@@ -82,7 +82,7 @@ public class Login {
 				if (user != null) {
 					if (password.equals(user.getPassword())) {
 						if (user.getType() == 0) {
-							MainGiaovu main = new MainGiaovu();
+							MainGiaovu main = new MainGiaovu(user.getUsername());
 							main.setVisible(true);
 							frame.dispose();
 						}
@@ -91,7 +91,9 @@ public class Login {
 							main.setVisible(true);
 							frame.dispose();
 						}
-					}	
+					}
+					else
+						JOptionPane.showMessageDialog(frame, "Invalid user or password!");
 				}
 				else {
 					JOptionPane.showMessageDialog(frame, "Invalid user or password!");

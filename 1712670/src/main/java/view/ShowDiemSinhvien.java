@@ -36,9 +36,9 @@ public class ShowDiemSinhvien extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowDiemSinhvien(int mssv) {
+	public ShowDiemSinhvien(final int mssv) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 538, 369);
+		setBounds(100, 100, 560, 369);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,5 +75,17 @@ public class ShowDiemSinhvien extends JFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 0, SpringLayout.SOUTH, contentPane);
 		springLayout.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, contentPane);
 		contentPane.add(scrollPane);
+		
+		JButton btnNewButton = new JButton("< Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainSinhvien main = new MainSinhvien(mssv);
+				main.setVisible(true);
+				dispose();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, contentPane);
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 0, SpringLayout.WEST, scrollPane);
+		contentPane.add(btnNewButton);
 	}
 }

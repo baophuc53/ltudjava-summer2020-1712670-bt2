@@ -24,6 +24,7 @@ public class ChangePassGv extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JPasswordField textField_1;
 	private JButton btnNewButton;
+	private JButton btnNewButton_1;
 	/**
 	 * Launch the application.
 	 */
@@ -88,6 +89,18 @@ public class ChangePassGv extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton, 160, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, -160, SpringLayout.EAST, contentPane);
 		contentPane.add(btnNewButton);
+		
+		btnNewButton_1 = new JButton("< Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainGiaovu main = new MainGiaovu(username);
+				main.setVisible(true);
+				dispose();
+			}
+		});
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, contentPane);
+		contentPane.add(btnNewButton_1);
 	}
 
 }

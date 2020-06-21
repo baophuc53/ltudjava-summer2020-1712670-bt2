@@ -44,19 +44,7 @@ public class UpdateSvMonhoc extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UpdateSvMonhoc frame = new UpdateSvMonhoc();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -100,7 +88,7 @@ public class UpdateSvMonhoc extends JFrame {
 				mon = comboBox1.getSelectedItem().toString();
 				mssv = Integer.valueOf(textField_mssv.getText());
 				svmh = SvMonhocDAO.layThongTinhSvMonhoc(mssv, mon);
-				if (svmh != null) {
+				if (svmh != null && svmh.getMaLop().equals(lop)) {
 					panel.setVisible(true);
 					textField_gk.setText(String.valueOf(svmh.getGk()));
 					textField_ck.setText(String.valueOf(svmh.getCk()));

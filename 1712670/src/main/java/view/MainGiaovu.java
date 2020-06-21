@@ -37,7 +37,9 @@ public class MainGiaovu extends JFrame {
 		JButton btnNewButton = new JButton("Qu\u1EA3n l\u00FD m\u00F4n h\u1ECDc");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				MainGiaovuMonhoc main = new MainGiaovuMonhoc(username);
+				main.setVisible(true);
+				dispose();
 			}
 		});
 		contentPane.add(btnNewButton);
